@@ -1,6 +1,8 @@
 ---
 title: "Análise da precisão"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r}
@@ -8,6 +10,7 @@ library(tidyverse)
 library(here)
 library(modelr)
 library(broom)
+library(scales)
 
 theme_set(theme_bw())
 ```
@@ -16,7 +19,7 @@ theme_set(theme_bw())
 
 ```{r carrega}
 
-reclamacoes = read_csv(here("data/3-avaliacao-humana/reclamacoes-avaliadas-20180703.csv"))
+reclamacoes = read_csv(here("data/3-avaliacao-humana/reclamacoes-avaliadas-20181113.csv"))
 sentimentos = read_csv(here("data/5-sentimentos/sentimento.csv"))
 
 reclamacoes = reclamacoes %>% mutate(comprimento_reclamacao = str_length(reclamacao))
@@ -42,9 +45,13 @@ Converte polaridades para escala 0-5
 
 ```{r}
 # Faça você mesmo. Crie a variável polaridade_normalizada
-# reclamacoes_l = reclamacoes_l %>% 
-#     group_by(lexico) %>% 
-#     mutate(polaridade_normalizada = ALGOAQUI)
+reclamacoes_l = reclamacoes_l %>% 
+     group_by(lexico) %>% 
+     mutate(polaridade_normalizada = rescale(-polaridade, to = c(1, 5)))
+
+reclamacoes_l %>% 
+    write_csv(here("data/5-sentimentos/reclamacoes_l.csv"))
+
 ```
 
 Calcula o erro (SSE) por reclamação
@@ -81,6 +88,8 @@ reclamacoes_l %>%
     geom_jitter(alpha = .5)  +
     # geom_boxplot() + 
     facet_wrap(~ lexico)
+
+
 ```
 
 

@@ -17,10 +17,8 @@ output: html_document
 library(tidyverse)
 library(ggplot2)
 
-setwd("C:/Users/Ariann/Documents/Metodologia/reclamacoes-do-gf/")
-
-reclamacoes <- read_csv("data/1-reclamacoes-selecionadas/20181610-reclamacoes-selecionadas.csv")
-avaliacoes <- read_csv("data/3-avaliacao-humana/avaliacoes-20181030.csv")
+reclamacoes <- read_csv("/home/agnaldosxj/reclamacoes-do-gf/data/1-reclamacoes-selecionadas/20181610-reclamacoes-selecionadas.csv")
+avaliacoes <- read_csv("/home/agnaldosxj/reclamacoes-do-gf/data/3-avaliacao-humana/avaliacoes-20181030.csv")
 
 ```
 ```{r warning=FALSE, message=FALSE, error=FALSE}
@@ -47,7 +45,7 @@ reclamacoes %>%
 ```
 <p></p>
 
-<p> Apartir da mediana notamos que o do número de palavras por reclamação, referentes à ANAC são levemente superior. Todavia, reclamações feitas para este órgão são de tamanho mais homogêneo. Desta forma, podemos concluir que as reclamações para ambos os órgãos (ANAC e do INSS) são semelhantes na em número de palavras que cada uma contém. </p>
+<p> A npartir da mediana notamos que o do número de palavras por reclamação, referentes à ANAC, são levemente superiores. Todavia, reclamações feitas para este órgão são de tamanho mais homogêneo. Desta forma, podemos concluir que as reclamações para ambos os órgãos (ANAC e do INSS) são semelhantes em número de palavras que cada uma contém. </p>
 
 <p></p>
 ## Será que existe relação entre o uso de caixa alta e o órgão governamental?
